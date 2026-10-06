@@ -1,7 +1,7 @@
 [project]
 name = "elastic-synthetics-screenshots"
 version = "0.1.0"
-description = "Extract Elastic Synthetics browser monitor screenshots from an Elasticsearch cluster"
+description = "Extract and scrub Elastic Synthetics browser monitor screenshots in an Elasticsearch cluster"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]

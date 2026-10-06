@@ -1,1 +1,1 @@
-"""Extract Elastic Synthetics browser monitor screenshots from Elasticsearch."""
+"""Extract and scrub Elastic Synthetics browser monitor screenshots in Elasticsearch."""

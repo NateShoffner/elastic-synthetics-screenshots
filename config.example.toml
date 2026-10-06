@@ -11,6 +11,7 @@ url = "https://your-cluster.example.com:9243"
 # ca_certs = "certs/ca.crt"  # CA bundle for self-signed clusters
 # insecure = false           # skip TLS verification
 
+# Read by list and extract only. scrub takes what to delete from its flags.
 [extract]
 out = "screenshots"
 from = "now-24h"
