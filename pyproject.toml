@@ -1,0 +1,46 @@
+[project]
+name = "elastic-synthetic-screenshot-extractor"
+version = "0.1.0"
+description = "Extract Elastic Synthetics browser monitor screenshots from an Elasticsearch cluster"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Nate Shoffner" }]
+requires-python = ">=3.11"
+keywords = ["elastic", "elasticsearch", "synthetics", "heartbeat", "screenshots"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Monitoring",
+]
+dependencies = [
+    # The 8.x client talks to both 8.x and 9.x clusters. The 9.x client is rejected by 8.x clusters.
+    "elasticsearch>=8.13,<9",
+    "pillow>=10",
+    "python-dotenv>=1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor"
+Issues = "https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor/issues"
+
+[project.scripts]
+synthetics-screenshots = "synthetics_screenshots.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/synthetics_screenshots"]

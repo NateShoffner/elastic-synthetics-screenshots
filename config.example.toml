@@ -1,0 +1,27 @@
+# Copy to config.toml and fill in. Every key is optional.
+# Command line flags override environment variables, which override this file.
+
+[connection]
+url = "https://your-cluster.example.com:9243"
+# cloud_id = ""              # alternative to url
+# Credentials can be set here, or kept out of the repo in .env (see .env.example).
+# api_key = ""
+# username = ""
+# password = ""
+# ca_certs = "certs/ca.crt"  # CA bundle for self-signed clusters
+# insecure = false           # skip TLS verification
+
+[extract]
+out = "screenshots"
+from = "now-24h"
+to = "now"
+# monitors = ["Checkout flow", "login*"]   # monitor id, name, or config id; wildcards allowed
+# locations = ["US East"]                  # observer.geo.name
+# status = "failed"                        # failed, succeeded, or skipped
+# limit = 100
+format = "jpg"                             # jpg or png
+overwrite = false
+page_size = 100
+# index = "synthetics-browser.screenshot-*"
+# status_index = "synthetics-browser-*"
+# quiet = false
