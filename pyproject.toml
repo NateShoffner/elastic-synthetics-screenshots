@@ -1,7 +1,7 @@
 [project]
-name = "elastic-synthetic-screenshot-extractor"
+name = "elastic-synthetics-screenshots"
 version = "0.1.0"
-description = "Extract Elastic Synthetics browser monitor screenshots from an Elasticsearch cluster"
+description = "Extract and scrub Elastic Synthetics browser monitor screenshots in an Elasticsearch cluster"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -29,11 +29,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor"
-Issues = "https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor/issues"
+Homepage = "https://github.com/nateshoffner/elastic-synthetics-screenshots"
+Issues = "https://github.com/nateshoffner/elastic-synthetics-screenshots/issues"
 
 [project.scripts]
-synthetics-screenshots = "synthetics_screenshots.cli:main"
+elastic-synthetics-screenshots = "elastic_synthetics_screenshots.cli:main"
 
 [dependency-groups]
 dev = ["pytest>=8"]
@@ -43,4 +43,4 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/synthetics_screenshots"]
+packages = ["src/elastic_synthetics_screenshots"]

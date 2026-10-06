@@ -21,7 +21,7 @@ wheels = [
 ]
 
 [[package]]
-name = "elastic-synthetic-screenshot-extractor"
+name = "elastic-synthetics-screenshots"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

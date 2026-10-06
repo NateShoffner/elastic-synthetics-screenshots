@@ -4,7 +4,7 @@ from io import BytesIO
 
 from PIL import Image
 
-from synthetics_screenshots.extractor import Options, build_query, extract, slugify
+from elastic_synthetics_screenshots.extractor import Options, build_query, extract, slugify
 
 
 def tile(color, fmt="PNG"):

@@ -1,6 +1,6 @@
 import pytest
 
-from synthetics_screenshots.cli import build_parser, resolve
+from elastic_synthetics_screenshots.cli import build_parser, resolve
 
 
 @pytest.fixture

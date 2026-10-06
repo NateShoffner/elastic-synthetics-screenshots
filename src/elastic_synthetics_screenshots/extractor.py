@@ -83,13 +83,22 @@ def slugify(value: str, max_length: int = 80) -> str:
     return slug[:max_length] or "unnamed"
 
 
-def _chunks(items: list[str], size: int) -> Iterator[list[str]]:
+def _chunks(items: list[Any], size: int) -> Iterator[list[Any]]:
     for i in range(0, len(items), size):
         yield items[i : i + size]
 
 
+class PartialResultsError(Exception):
+    """A search came back without results from every shard."""
+
+
 def iter_pages(
-    es: Any, index: str, query: dict[str, Any], page_size: int
+    es: Any,
+    index: str,
+    query: dict[str, Any],
+    page_size: int,
+    source: list[str] | None = None,
+    allow_partial: bool = True,
 ) -> Iterator[list[dict[str, Any]]]:
     """Page through screenshot documents, oldest first."""
     pit = es.open_point_in_time(index=index, keep_alive=PIT_KEEP_ALIVE)["id"]
@@ -103,8 +112,12 @@ def iter_pages(
                 size=page_size,
                 search_after=search_after,
                 track_total_hits=False,
+                source=source,
             )
             pit = resp.get("pit_id", pit)
+            failed = resp.get("_shards", {}).get("failed", 0)
+            if failed and not allow_partial:
+                raise PartialResultsError(f"{failed} shard(s) failed while listing screenshots in {index}")
             hits = resp["hits"]["hits"]
             if not hits:
                 return
