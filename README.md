@@ -1,6 +1,6 @@
-# elastic-synthetic-screenshot-extractor
+# elastic-synthetics-screenshots
 
-[![CI](https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor/actions/workflows/ci.yml/badge.svg)](https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor/actions/workflows/ci.yml)
+[![CI](https://github.com/nateshoffner/elastic-synthetics-screenshots/actions/workflows/ci.yml/badge.svg)](https://github.com/nateshoffner/elastic-synthetics-screenshots/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Pulls screenshots captured by Elastic Synthetics browser monitors out of an
@@ -80,7 +80,7 @@ who can manage API keys:
 ```
 POST /_security/api_key
 {
-  "name": "synthetics-screenshots",
+  "name": "elastic-synthetics-screenshots",
   "role_descriptors": {
     "synthetics_screenshot_reader": {
       "indices": [
@@ -120,25 +120,25 @@ remote cluster and pass the remote pattern, for example
 See which monitors have screenshots:
 
 ```
-uv run synthetics-screenshots list --from now-7d
+uv run elastic-synthetics-screenshots list --from now-7d
 ```
 
 Extract screenshots:
 
 ```
 # everything from the last 24 hours
-uv run synthetics-screenshots extract
+uv run elastic-synthetics-screenshots extract
 
 # one monitor, last 7 days, failed steps only
-uv run synthetics-screenshots extract -m "Checkout flow" --from now-7d --status failed
+uv run elastic-synthetics-screenshots extract -m "Checkout flow" --from now-7d --status failed
 
 # wildcard match, specific location, lossless output
-uv run synthetics-screenshots extract -m "checkout*" -l "US East" --format png -o ./out
+uv run elastic-synthetics-screenshots extract -m "checkout*" -l "US East" --format png -o ./out
 ```
 
 `--monitor` matches the monitor id, name, or config id. `--from` and `--to`
 accept Elasticsearch date math (`now-7d`) or ISO 8601 timestamps. Run
-`uv run synthetics-screenshots extract --help` for all options.
+`uv run elastic-synthetics-screenshots extract --help` for all options.
 
 ## Output
 
@@ -158,8 +158,8 @@ range only downloads what is new. Use `--overwrite` to rewrite them.
 ## Development
 
 ```
-git clone https://github.com/nateshoffner/elastic-synthetic-screenshot-extractor
-cd elastic-synthetic-screenshot-extractor
+git clone https://github.com/nateshoffner/elastic-synthetics-screenshots
+cd elastic-synthetics-screenshots
 uv sync
 uv run pytest
 ```
@@ -180,7 +180,7 @@ are reused across many screenshots.
 The extractor pages through the refs with a point-in-time search, fetches the
 tiles it has not seen yet by id, and pastes them onto a canvas at the recorded
 positions. Older `step/screenshot` documents that embed the whole image are
-written out unchanged. The code for this is in `src/synthetics_screenshots/`:
+written out unchanged. The code for this is in `src/elastic_synthetics_screenshots/`:
 `extractor.py` does the querying and `compose.py` the stitching.
 
 ## License

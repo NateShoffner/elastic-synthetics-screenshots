@@ -57,7 +57,7 @@ def build_parser() -> argparse.ArgumentParser:
     common.add_argument("--index", help=f"screenshot index pattern (default: {SCREENSHOT_INDEX})")
 
     parser = argparse.ArgumentParser(
-        prog="synthetics-screenshots",
+        prog="elastic-synthetics-screenshots",
         description="Extract Elastic Synthetics browser monitor screenshots from a cluster.",
     )
     commands = parser.add_subparsers(dest="command", required=True)
