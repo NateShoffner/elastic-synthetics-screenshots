@@ -221,6 +221,21 @@ The extractor pages through the refs with a point-in-time search, fetches the ti
 
 Scrubbing (`scrub.py`) has to know which tiles other screenshots still use. Heartbeat writes the layout at the document root while the index template only maps it under `synthetics.`, so the tile hashes are not indexed. The scrubber reads them from `_source` with a search-time runtime field instead.
 
+## Releases
+
+Every push and pull request runs tests and a build (`.github/workflows/ci.yml`). Pushing a tag like `v0.1.0` additionally builds the wheel and sdist and publishes them as a [GitHub Release](https://github.com/nateshoffner/elastic-synthetics-screenshots/releases) (`.github/workflows/release.yml`).
+
+To cut a release:
+
+```
+# bump the version in pyproject.toml, then:
+git commit -am "chore: release v0.1.1"
+git tag v0.1.1
+git push && git push --tags
+```
+
+The release workflow fails if the tag does not match the version in `pyproject.toml`, so a mismatched tag never ships.
+
 ## Disclaimer
 
 This is an independent project. It is not affiliated with, endorsed by, or supported by Elastic. Elastic, Elasticsearch, and Kibana are trademarks of Elasticsearch B.V.
